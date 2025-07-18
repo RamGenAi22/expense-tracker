@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EXPENSE TRACKER</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename = 'style.css')}}">
+
+
+</head>
+<body>
+<div class="container">
+    <h1>Expense Tracker</h1>
+
+    <form method="POST">
+        <input type="date" name="date" required>
+        <select name="category">
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Bills</option>
+            <option>Shopping</option>
+            <option>Other</option>
+        </select>
+        <input type="number" step="0.01" name="amount" required placeholder="Enter the amount">
+        <input type="text" name="note" placeholder="Note (optional)">
+        <button type="submit">Add Expense</button>
+    </form>
+
+    <div class="alert">
+        Total Spent This Month: ₹{{ '%.2f' | format(total_this_month) }}
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Note</th>
+        </tr>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense[1] }}</td>
+            <td>{{ expense[2] }}</td>
+            <td>₹{{ '%.2f' | format(expense[3]) }}</td>
+            <td>{{ expense[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/report" class="button-link">📊 View Report</a>
+</div>
+</body>
+</html>

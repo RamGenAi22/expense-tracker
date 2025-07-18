@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS expense_db;
+USE expense_db;
+
+CREATE TABLE IF NOT EXISTS expenses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    note TEXT
+);

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Report</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+<div class="container">
+    <h1>📊 Category-Wise Expense Report</h1>
+
+    <!-- 📁 Download Button -->
+    <div class="text-end mb-3">
+        <a href="/download" class="button-link">⬇️ Download CSV</a>
+    </div>
+
+    <!-- 📋 Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Total Spent</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in category_totals %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>₹{{ '%.2f' | format(row[1] if row[1] else 0) }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 🔙 Back Button -->
+    <a href="/" class="button-link">← Back to Home</a>
+</div>
+</body>
+</div>
+</html>
